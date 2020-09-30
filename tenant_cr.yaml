@@ -1,0 +1,27 @@
+---
+apiVersion: paascache.dsi.intesasanpaolo.com/v1
+kind: CacheTenant
+metadata:
+  labels:
+    app: paascache
+    app.kubernetes.io/managed-by: isp-managedcache
+  name: mytenant
+  namespace: mytenant
+spec:
+  name: mytenant
+  cacheProvider: hazelcast
+  cacheNamespace: mytenant
+  enviroment: svil
+  regions:
+    - name: Torino
+    - name: Parma
+  additionalCacheSpec:
+    hazelcast:
+      baseImage:
+        namespace: myBaseImageNamespace
+        name: myBaseImageName
+        tag: myBaseImageTag
+      containerPort: 8080
+      healtcheckPort: 8081
+      hostname: myHostname
+      path: http://path-di-prova.com/blablabla
